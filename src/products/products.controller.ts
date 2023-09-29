@@ -1,4 +1,10 @@
-import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { SerializeInterceptor } from '../interceptors/serialize.interceptor';
 import { ProductDto } from './dtos/product.dto';
@@ -17,6 +23,12 @@ export class ProductsController {
   @Get('/:id')
   @UseInterceptors(new SerializeInterceptor(ProductDto))
   async getProduct(@Param('id') id: string) {
-    return await this.productsService.findOne(new mongoose.Types.ObjectId(id));
+    const product = await this.productsService.findOne(
+      new mongoose.Types.ObjectId(id),
+    );
+    if (!product) {
+      throw new NotFoundException(`Product with productId: ${id} not found!`);
+    }
+    return product;
   }
 }

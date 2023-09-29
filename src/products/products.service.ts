@@ -17,6 +17,10 @@ export class ProductsService {
   }
 
   async findOne(productId: mongoose.Types.ObjectId): Promise<Product> {
-    return await this.productModel.findOne({ _id: productId }); //error handling
+    if (!productId) {
+      return null;
+    }
+
+    return this.productModel.findOne({ _id: productId }).exec();
   }
 }
