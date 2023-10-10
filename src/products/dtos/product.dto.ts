@@ -1,13 +1,5 @@
 import { Expose } from 'class-transformer';
-import {
-  IS_HEXADECIMAL,
-  IsNumber,
-  IsPositive,
-  IsString,
-  Length,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsNumber, IsPositive, IsString, MinLength } from 'class-validator';
 
 export class ProductDto {
   @Expose()

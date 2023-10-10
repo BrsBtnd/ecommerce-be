@@ -8,7 +8,6 @@ import {
 import { ProductsService } from './products.service';
 import { SerializeInterceptor } from '../interceptors/serialize.interceptor';
 import { ProductDto } from './dtos/product.dto';
-import mongoose from 'mongoose';
 
 @Controller('products')
 export class ProductsController {
@@ -23,9 +22,8 @@ export class ProductsController {
   @Get('/:id')
   @UseInterceptors(new SerializeInterceptor(ProductDto))
   async getProduct(@Param('id') id: string) {
-    const product = await this.productsService.findOne(
-      new mongoose.Types.ObjectId(id),
-    );
+    const product = await this.productsService.findOne(id);
+
     if (!product) {
       throw new NotFoundException(`Product with productId: ${id} not found!`);
     }

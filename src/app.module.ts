@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ProductsModule } from './products/products.module';
-import { MyCartModule } from './my-cart/my-cart.module';
+import { CartModule } from './cart/cart.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FakeDataGenModule } from './fake-data-gen/fake-data-gen.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -13,7 +13,7 @@ import * as process from 'process';
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     ProductsModule,
-    MyCartModule,
+    CartModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
