@@ -4,10 +4,14 @@ import { Cart } from './schemas/cart.schema';
 import { Model } from 'mongoose';
 import { CreateCartDto } from './dtos/create-cart.dto';
 import { UpdateCartDto } from './dtos/update-cart.dto';
+import { ProductsService } from '../products/products.service';
 
 @Injectable()
 export class CartService {
-  constructor(@InjectModel(Cart.name) private cartModel: Model<Cart>) {}
+  constructor(
+    @InjectModel(Cart.name) private cartModel: Model<Cart>,
+    private productService: ProductsService,
+  ) {}
 
   async findAll(): Promise<Cart[]> {
     return await this.cartModel.find().exec();
@@ -21,7 +25,39 @@ export class CartService {
     return this.cartModel.findOne({ _id: cartId }).exec();
   }
 
-  async create(cartDto: CreateCartDto) {}
+  async findByUser(userId: string): Promise<Cart> {
+    if (!userId) {
+      return null;
+    }
 
-  async addToCart(cartDto: UpdateCartDto, cartId: string) {}
+    return this.cartModel.findOne({ userId }).exec();
+  }
+
+  async create(cartDto: CreateCartDto) {
+    const userExists = await this.findByUser(cartDto.userId);
+
+    if (userExists) {
+      return null;
+    }
+
+    return this.cartModel.create({ userId: cartDto.userId, products: [] });
+  }
+
+  async addToCart(cartDto: UpdateCartDto, cartId: string) {
+    const cart = await this.findOne(cartId);
+    const products = await this.productService.findMultipleById(
+      cartDto.products,
+    );
+
+    if (!cart || !products.length) {
+      return null;
+    }
+
+    return this.cartModel
+      .updateOne(
+        { _id: cartId },
+        { $addToSet: { products: { $each: products } } },
+      )
+      .exec();
+  }
 }

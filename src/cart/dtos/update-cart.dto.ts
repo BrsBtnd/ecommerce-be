@@ -1,15 +1,8 @@
-import { IsString } from 'class-validator';
-import { plainToInstance, Transform } from 'class-transformer';
-import { ProductDto } from '../../products/dtos/product.dto';
+import { IsArray, IsString, MinLength } from 'class-validator';
 
 export class UpdateCartDto {
-  @IsString()
-  userId: string;
-
-  @Transform(({ obj }) =>
-    plainToInstance(ProductDto, obj.products, {
-      excludeExtraneousValues: true,
-    }),
-  )
-  products: ProductDto[];
+  @IsString({ each: true })
+  @MinLength(24, { each: true })
+  @IsArray()
+  products: string[];
 }

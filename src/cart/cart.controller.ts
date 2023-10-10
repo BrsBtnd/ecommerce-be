@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -39,12 +40,24 @@ export class CartController {
   @Post()
   @UseInterceptors(new SerializeInterceptor(CartDto))
   async createCart(@Body() body: CreateCartDto) {
-    return this.cartService.create(body);
+    const user = await this.cartService.create(body);
+
+    if (!user) {
+      throw new BadRequestException(
+        `User with username: ${body.userId} already exists.`,
+      );
+    }
+    return user;
   }
 
   @Patch('/:id')
   @UseInterceptors(new SerializeInterceptor(CartDto))
   async addProductToCart(@Body() body: UpdateCartDto, @Param('id') id: string) {
-    return this.cartService.addToCart(body, id);
+    const updatedCart = await this.cartService.addToCart(body, id);
+
+    if (!updatedCart) {
+      throw new NotFoundException(`Cart with cartId: ${id} not found!`);
+    }
+    return updatedCart;
   }
 }

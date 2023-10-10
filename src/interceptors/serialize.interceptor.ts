@@ -18,10 +18,20 @@ export class SerializeInterceptor implements NestInterceptor {
     // console.log(context.getArgs());
     const request = context.switchToHttp().getRequest();
 
-    if (request?.params?.id && request?.params?.id.toString().length < 24) {
+    if (request?.params?.id && request?.params?.id.toString().length !== 24) {
       throw new BadRequestException(
         `Param id: ${request.params.id} is not in the correct format!`,
       );
+    }
+
+    if (request?.body?.products) {
+      request?.body?.products.forEach((product: string) => {
+        if (product.length !== 24) {
+          throw new BadRequestException(
+            `Product id: ${product} is not in the correct format!`,
+          );
+        }
+      });
     }
 
     return next.handle().pipe(

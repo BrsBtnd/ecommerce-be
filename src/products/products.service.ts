@@ -21,4 +21,12 @@ export class ProductsService {
 
     return this.productModel.findOne({ _id: productId }).exec();
   }
+
+  async findMultipleById(productIds: string[]) {
+    if (!productIds.length) {
+      return null;
+    }
+
+    return this.productModel.find({ _id: { $in: productIds } }).exec();
+  }
 }
