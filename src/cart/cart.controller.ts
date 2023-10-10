@@ -40,14 +40,14 @@ export class CartController {
   @Post()
   @UseInterceptors(new SerializeInterceptor(CartDto))
   async createCart(@Body() body: CreateCartDto) {
-    const user = await this.cartService.create(body);
+    const cart = await this.cartService.create(body);
 
-    if (!user) {
+    if (!cart) {
       throw new BadRequestException(
-        `User with username: ${body.userId} already exists.`,
+        `User cart with username: ${body.userId} already exists.`,
       );
     }
-    return user;
+    return cart;
   }
 
   @Patch('/:id')

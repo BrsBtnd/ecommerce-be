@@ -8,7 +8,7 @@ import { getModelToken } from '@nestjs/mongoose';
 const product1Id = new mongoose.Types.ObjectId();
 const product2Id = new mongoose.Types.ObjectId();
 
-const mockProduct = {
+export const mockProduct = {
   _id: product1Id,
   name: 'Awesome Cotton Pizza',
   price: 867,
@@ -23,16 +23,7 @@ describe('ProductsService', () => {
   let productsService: ProductsService;
 
   const productsArray = [
-    {
-      _id: product1Id,
-      name: 'Awesome Cotton Pizza',
-      price: 867,
-      manufacturer: 'Grady - Cassin',
-      description:
-        'The Football Is Good For Training And Recreational Purposes',
-      __v: 0,
-      type: 'tablet',
-    },
+    { ...mockProduct },
     {
       _id: product2Id,
       name: 'Gorgeous Steel Pants',
@@ -81,13 +72,60 @@ describe('ProductsService', () => {
     expect(products).toEqual(productsArray);
   });
 
+  // Should return an array of products when given an array of valid productIds
+  it('should return an array of products when given an array of valid productIds', async () => {
+    jest.spyOn(productModel, 'find').mockReturnValue({
+      exec: jest.fn().mockResolvedValueOnce(productsArray),
+    } as any);
+
+    const productIds = [product1Id.toString(), product2Id.toString()];
+    const products = await productsService.findMultipleById(productIds);
+
+    expect(productModel.find).toHaveBeenCalledWith({
+      _id: { $in: productIds },
+    });
+
+    expect(products).toEqual(productsArray);
+  });
+
+  // Should return an empty array when given an empty array of productIds
+  it('should return an empty array when given an empty array of productIds', async () => {
+    jest.spyOn(productModel, 'find').mockReturnValue({
+      exec: jest.fn().mockResolvedValueOnce([]),
+    } as any);
+
+    const productIds = [];
+    const products = await productsService.findMultipleById(productIds);
+
+    expect(productModel.find).toHaveBeenCalledWith({
+      _id: { $in: productIds },
+    });
+
+    expect(products).toEqual([]);
+  });
+
+  // Should return null when given a null value for productIds
+  it('should return null when given a null value for productIds', async () => {
+    jest.spyOn(productModel, 'find').mockReturnValue({
+      exec: jest.fn().mockResolvedValueOnce(null),
+    } as any);
+
+    const products = await productsService.findMultipleById(null);
+
+    expect(productModel.find).not.toHaveBeenCalled();
+
+    expect(products).toEqual(null);
+  });
+
   // Should return a single product when findOne() is called with a valid product ID
   it('should return a single product when findOne() is called with a valid product ID', async () => {
     jest.spyOn(productModel, 'findOne').mockReturnValue({
       exec: jest.fn().mockResolvedValueOnce(productsArray[0]),
     } as any);
 
-    const product = await productsService.findOne(productsArray[0]._id);
+    const product = await productsService.findOne(
+      productsArray[0]._id.toString(),
+    );
 
     expect(product).toEqual(productsArray[0]);
   });
@@ -111,7 +149,7 @@ describe('ProductsService', () => {
     } as any);
 
     const product = await productsService.findOne(
-      new mongoose.Types.ObjectId(),
+      new mongoose.Types.ObjectId().toString(),
     );
 
     expect(product).toBeNull();

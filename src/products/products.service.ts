@@ -23,7 +23,7 @@ export class ProductsService {
   }
 
   async findMultipleById(productIds: string[]) {
-    if (!productIds.length) {
+    if (!productIds) {
       return null;
     }
 
