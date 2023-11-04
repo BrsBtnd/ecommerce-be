@@ -26,5 +26,5 @@ export class ProductDto {
 
   @Expose()
   @IsString()
-  type: string;
+  category: string;
 }

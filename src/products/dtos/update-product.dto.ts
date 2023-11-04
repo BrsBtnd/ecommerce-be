@@ -23,5 +23,5 @@ export class UpdateProductDto {
 
   @IsString()
   @IsOptional()
-  type: string;
+  category: string;
 }

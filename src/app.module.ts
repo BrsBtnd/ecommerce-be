@@ -10,7 +10,9 @@ import * as process from 'process';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
+      envFilePath: `.env${
+        process.env.NODE_ENV === 'production' ? '' : '.development'
+      }`,
     }),
     ProductsModule,
     CartModule,

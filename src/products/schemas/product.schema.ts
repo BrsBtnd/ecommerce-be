@@ -23,9 +23,9 @@ export class Product {
   @IsString()
   description: string;
 
-  @Prop()
+  @Prop({ alias: 'type' })
   @IsString()
-  type: string;
+  category: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
