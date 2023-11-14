@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "652412eceef4c0eceaf246f0"
+  },
+  "userId": "random123",
+  "products": [
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23b"
+      },
+      "name": "Awesome Cotton Pizza",
+      "price": 867,
+      "manufacturer": "Grady - Cassin",
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "__v": 0,
+      "category": "tablet"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23c"
+      },
+      "name": "Gorgeous Steel Pants",
+      "price": 757,
+      "manufacturer": "Stanton, Cummerata and Walsh",
+      "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+      "__v": 0,
+      "category": "tablet"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23d"
+      },
+      "name": "Awesome Frozen Keyboard",
+      "price": 310,
+      "manufacturer": "Lueilwitz Group",
+      "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+      "__v": 0,
+      "category": "laptop"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23e"
+      },
+      "name": "Generic Fresh Soap",
+      "price": 7,
+      "manufacturer": "Keebler, Larson and Roob",
+      "description": "The automobile layout consists of a front-engine design, with transaxle-category transmissions mounted at the rear of the engine and four wheel drive",
+      "__v": 0,
+      "category": "phone"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6525422c8ea6b5f7d06af9ab"
+  },
+  "userId": "random",
+  "products": [
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23b"
+      },
+      "name": "Awesome Cotton Pizza",
+      "price": 867,
+      "manufacturer": "Grady - Cassin",
+      "description": "The Football Is Good For Training And Recreational Purposes",
+      "__v": 0,
+      "category": "tablet"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23c"
+      },
+      "name": "Gorgeous Steel Pants",
+      "price": 757,
+      "manufacturer": "Stanton, Cummerata and Walsh",
+      "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+      "__v": 0,
+      "category": "tablet"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23d"
+      },
+      "name": "Awesome Frozen Keyboard",
+      "price": 310,
+      "manufacturer": "Lueilwitz Group",
+      "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+      "__v": 0,
+      "category": "laptop"
+    },
+    {
+      "_id": {
+        "$oid": "64e720002b3b3d651305a23f"
+      },
+      "name": "Unbranded Granite Bike",
+      "price": 170,
+      "manufacturer": "Kerluke Inc",
+      "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+      "__v": 0,
+      "category": "laptop"
+    }
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "652545d1fef2b8efb43b6e39"
+  },
+  "userId": "random1",
+  "products": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6525a313e234186f2c104ba8"
+  },
+  "userId": "random2",
+  "products": [],
+  "__v": 0
+}]

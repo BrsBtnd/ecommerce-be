@@ -20,7 +20,7 @@ $ npm install
 ## Running the app
 
 Before the app can be run, a MongoDB database must be created and the connection string must be added to the .env file. The .env.development file can be used as a template.
-
+Also, the ecommerce.products.json and the ecommerce.carts.json files must be imported into the database. 
 ```bash
 # development
 $ npm run start
