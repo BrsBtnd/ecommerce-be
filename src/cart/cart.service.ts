@@ -45,19 +45,23 @@ export class CartService {
 
   async addToCart(cartDto: UpdateCartDto, cartId: string) {
     const cart = await this.findOne(cartId);
+
     const products = await this.productService.findMultipleById(
       cartDto.products,
     );
 
-    if (!cart || !products.length) {
+    if (!cart) {
       return null;
     }
 
+    if (products?.length === 0) {
+      return this.cartModel
+        .updateOne({ _id: cartId }, { $pull: { products: {} } })
+        .exec();
+    }
+
     return this.cartModel
-      .updateOne(
-        { _id: cartId },
-        { $addToSet: { products: { $each: products } } },
-      )
+      .updateOne({ _id: cartId }, { $set: { products: products } })
       .exec();
   }
 }

@@ -13,10 +13,15 @@ export class CartDto {
   userId: string;
 
   @Expose()
-  @Transform(({ obj }) =>
-    plainToInstance(ProductDto, obj.products, {
+  @Transform(({ obj }) => {
+    const transformedProducts: any = plainToInstance(ProductDto, obj.products, {
       excludeExtraneousValues: true,
-    }),
-  )
+    });
+
+    return transformedProducts?.map((product: ProductDto, index: number) => ({
+      ...product,
+      id: obj.products[index]._id,
+    }));
+  })
   products: ProductDto[];
 }
