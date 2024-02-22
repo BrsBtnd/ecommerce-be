@@ -22,7 +22,7 @@ const mockCart = {
       manufacturer: 'Grady - Cassin',
       description:
         'The Football Is Good For Training And Recreational Purposes',
-      type: 'tablet',
+      category: 'tablet',
     },
     {
       name: 'Gorgeous Steel Pants',
@@ -30,7 +30,7 @@ const mockCart = {
       manufacturer: 'Stanton, Cummerata and Walsh',
       description:
         'Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals',
-      type: 'tablet',
+      category: 'tablet',
     },
     {
       name: 'Awesome Frozen Keyboard',
@@ -38,7 +38,7 @@ const mockCart = {
       manufacturer: 'Lueilwitz Group',
       description:
         'The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients',
-      type: 'laptop',
+      category: 'laptop',
     },
     {
       name: 'Generic Fresh Soap',
@@ -46,7 +46,7 @@ const mockCart = {
       manufacturer: 'Keebler, Larson and Roob',
       description:
         'The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive',
-      type: 'phone',
+      category: 'phone',
     },
   ],
 };
@@ -69,7 +69,7 @@ describe('MyCartService', () => {
           manufacturer: 'Grady - Cassin',
           description:
             'The Football Is Good For Training And Recreational Purposes',
-          type: 'tablet',
+          category: 'tablet',
         },
         {
           name: 'Gorgeous Steel Pants',
@@ -77,7 +77,7 @@ describe('MyCartService', () => {
           manufacturer: 'Stanton, Cummerata and Walsh',
           description:
             'Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals',
-          type: 'tablet',
+          category: 'tablet',
         },
         {
           name: 'Awesome Frozen Keyboard',
@@ -85,7 +85,7 @@ describe('MyCartService', () => {
           manufacturer: 'Lueilwitz Group',
           description:
             'The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients',
-          type: 'laptop',
+          category: 'laptop',
         },
         {
           name: 'Unbranded Granite Bike',
@@ -93,7 +93,7 @@ describe('MyCartService', () => {
           manufacturer: 'Kerluke Inc',
           description:
             'The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients',
-          type: 'laptop',
+          category: 'laptop',
         },
       ],
     },
